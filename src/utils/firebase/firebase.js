@@ -91,7 +91,7 @@ const firebaseConfig = {
     return await signInWithEmailAndPassword(auth, email, password);
   }
   
-  export const signOutAuthUser = async () => {
+  export const signOutUser = async () => {
     return await signOut(auth);
   };
 
