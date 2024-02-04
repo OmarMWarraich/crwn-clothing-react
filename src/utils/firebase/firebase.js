@@ -5,7 +5,8 @@ import {
     signInWithRedirect,
     signInWithPopup,
     GoogleAuthProvider,
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    signOut,
 } from 'firebase/auth';
 
 import {
@@ -89,3 +90,6 @@ const firebaseConfig = {
     return await signInWithEmailAndPassword(auth, email, password);
   }
   
+  export const signOutAuthUser = async () => {
+    return await signOut(auth);
+  };
