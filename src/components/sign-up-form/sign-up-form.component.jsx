@@ -5,8 +5,8 @@
 
   import {
     createAuthUserWithEmailAndPassword,
-    createUserDocumentAuth,
-  } from '../../utils/firebase/firebase';
+    createUserDocumentFromAuth,
+  } from '../../utils/firebase/firebase.utils';
 
   import './sign-up-form.styles.scss';
 
@@ -38,7 +38,7 @@
           email,
           password
         );
-        await createUserDocumentAuth(user, { displayName });
+        await createUserDocumentFromAuth(user, { displayName });
         resetFormFields();
       } catch (error) {
         if (error.code === 'auth/email-already-in-use') {

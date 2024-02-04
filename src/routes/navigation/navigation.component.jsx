@@ -9,7 +9,7 @@ import { CartContext } from '../../contexts/cart/cart.context';
 
 import { ReactComponent as CrwnLogo } from '../../assets/crown.svg';
 
-import { signOutUser } from '../../utils/firebase/firebase';
+import { signOutUser } from '../../utils/firebase/firebase.utils';
 
 import './navigation.styles.scss';
 
