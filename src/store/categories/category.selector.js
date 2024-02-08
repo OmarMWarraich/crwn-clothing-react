@@ -5,4 +5,4 @@ export const selectCategoriesMap = (state) => state.categories.categories
         return acc;
     }, {});
 
-    
+export const selectIsLoading = (state) => state.categories.isLoading;
