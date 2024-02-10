@@ -3,9 +3,9 @@ import {
   selectCartCount,
   selectIsCartOpen,
 } from '../../store/cart/cart.selector';
+import { setIsCartOpen } from '../../store/cart/cart.reducer';
 
 import { CartIconContainer, ItemCount, ShoppingIcon } from './cart-icon.styles';
-import { setIsCartOpen } from '../../store/cart/cart.action';
 
 const CartIcon = () => {
   const dispatch = useDispatch();
