@@ -44,6 +44,7 @@ export const DirectoryItemContainer = styled.div`
   border: 1px solid black;
   margin: 0 7.5px 15px;
   overflow: hidden;
+  position: relative; /* Added for positioning of child elements */
 
   &:first-child {
     margin-right: 7.5px;
@@ -64,5 +65,15 @@ export const DirectoryItemContainer = styled.div`
     ${Body} {
       opacity: 0.9;
     }
+  }
+
+  @media screen and (max-width: 768px) {
+    min-width: 45%; /* Adjust width for smaller screens */
+    margin: 0 auto 15px; /* Center and adjust margin for better spacing */
+  }
+
+  @media screen and (max-width: 480px) {
+    min-width: 100%; /* Adjust width to full width for smaller screens */
+    height: 200px; /* Adjust height for smaller screens */
   }
 `;
