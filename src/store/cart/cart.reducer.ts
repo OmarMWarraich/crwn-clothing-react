@@ -1,6 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { CartItem } from './cart.types';
 
-const addCartItem = (cartItems, productToAdd) => {
+const addCartItem = (cartItems: CartItem[], productToAdd: CartItem) => {
   const existingCartItem = cartItems.find(
     (cartItem) => cartItem.id === productToAdd.id
   );
@@ -16,18 +17,15 @@ const addCartItem = (cartItems, productToAdd) => {
   return [...cartItems, { ...productToAdd, quantity: 1 }];
 };
 
-const removeCartItem = (cartItems, cartItemToRemove) => {
-  // find the cart item to remove
+const removeCartItem = (cartItems: CartItem[], cartItemToRemove: CartItem) => {
   const existingCartItem = cartItems.find(
     (cartItem) => cartItem.id === cartItemToRemove.id
   );
 
-  // check if quantity is equal to 1, if it is remove that item from the cart
-  if (existingCartItem.quantity === 1) {
+  if (existingCartItem?.quantity === 1) {
     return cartItems.filter((cartItem) => cartItem.id !== cartItemToRemove.id);
   }
 
-  // return back cartitems with matching cart item with reduced quantity
   return cartItems.map((cartItem) =>
     cartItem.id === cartItemToRemove.id
       ? { ...cartItem, quantity: cartItem.quantity - 1 }
@@ -35,10 +33,15 @@ const removeCartItem = (cartItems, cartItemToRemove) => {
   );
 };
 
-const clearCartItem = (cartItems, cartItemToClear) =>
+const clearCartItem = (cartItems: CartItem[], cartItemToClear: CartItem) =>
   cartItems.filter((cartItem) => cartItem.id !== cartItemToClear.id);
 
-const CART_INITIAL_STATE = {
+interface CartState {
+  isCartOpen: boolean;
+  cartItems: CartItem[];
+}
+
+const CART_INITIAL_STATE: CartState = {
   isCartOpen: false,
   cartItems: [],
 };
@@ -47,16 +50,16 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState: CART_INITIAL_STATE,
   reducers: {
-    setIsCartOpen(state, action) {
+    setIsCartOpen(state, action: PayloadAction<boolean>) {
       state.isCartOpen = action.payload;
     },
-    addItemToCart(state, action) {
+    addItemToCart(state, action: PayloadAction<CartItem>) {
       state.cartItems = addCartItem(state.cartItems, action.payload);
     },
-    removeItemFromCart(state, action) {
+    removeItemFromCart(state, action: PayloadAction<CartItem>) {
       state.cartItems = removeCartItem(state.cartItems, action.payload);
     },
-    clearItemFromCart(state, action) {
+    clearItemFromCart(state, action: PayloadAction<CartItem>) {
       state.cartItems = clearCartItem(state.cartItems, action.payload);
     },
   },
